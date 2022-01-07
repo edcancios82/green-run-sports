@@ -17,7 +17,6 @@ const App = () => {
       <>
         <button onClick={handleDarkMode}>Toggle Theme</button>
         <button onClick={handleAxios}>Axios call</button>
-
         <Home />
       </>
     </ThemeProvider>
