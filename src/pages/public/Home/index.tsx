@@ -1,31 +1,34 @@
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { Link } from "react-router-dom";
 import { animated, useSpring } from "react-spring";
-import { auth } from "../../../constants/firebaseConfig";
-import { Container } from "./index.styles";
+import HomePic from "../../../assets/home.png";
+import { Card, Container } from "./index.styles";
 
 export const Home = () => {
-  const props = useSpring({
+  const imgProps = useSpring({
     to: { opacity: 1 },
     from: { opacity: 0 },
     delay: 400,
   });
 
-  const handleSignIn = () => {
-    createUserWithEmailAndPassword(auth, "teste@teste.com", "password")
-      .then((userCredential) => {
-        // Signed in
-        const user = userCredential.user;
-        console.log(user, "user");
-      })
-      .catch((error) => {
-        const errorMessage = error.message;
-        console.log(errorMessage, "errorMessage");
-      });
-  };
+  const cardProps = useSpring({
+    to: { opacity: 1 },
+    from: { opacity: 0 },
+    delay: 1000,
+  });
+
   return (
     <Container>
-      <animated.div style={props}>
-        <button onClick={handleSignIn}>Register example</button>
+      <animated.div style={imgProps}>
+        <img alt="home" src={HomePic} width="100%" />
+      </animated.div>
+      <animated.div style={cardProps}>
+        <Card>
+          <h2>Discover Your Best Sport With Us</h2>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+          <Link to="/login">
+            <button>Login</button>
+          </Link>
+        </Card>
       </animated.div>
     </Container>
   );
