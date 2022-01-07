@@ -1,26 +1,27 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import { ThemeProvider } from "styled-components";
+import { myDarkTheme, myLightTheme } from "./constants/myTheme";
+import { Home } from "./pages";
+import { axiosGet } from "./api/axiosRequest";
 
-function App() {
+const App = () => {
+  const [theme, setTheme] = useState(myLightTheme);
+
+  const handleDarkMode = () =>
+    setTheme(theme === myLightTheme ? myDarkTheme : myLightTheme);
+
+  const handleAxios = () => axiosGet();
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={theme}>
+      <>
+        <button onClick={handleDarkMode}>Toggle Theme</button>
+        <button onClick={handleAxios}>Axios call</button>
+
+        <Home />
+      </>
+    </ThemeProvider>
   );
-}
+};
 
 export default App;
