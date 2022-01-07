@@ -1,6 +1,7 @@
-import React from "react";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { animated, useSpring } from "react-spring";
+import { auth } from "../../../constants/firebaseConfig";
 import { Container } from "./index.styles";
-import { useSpring, animated } from "react-spring";
 
 export const Home = () => {
   const props = useSpring({
@@ -8,9 +9,24 @@ export const Home = () => {
     from: { opacity: 0 },
     delay: 400,
   });
+
+  const handleSignIn = () => {
+    createUserWithEmailAndPassword(auth, "teste@teste.com", "password")
+      .then((userCredential) => {
+        // Signed in
+        const user = userCredential.user;
+        console.log(user, "user");
+      })
+      .catch((error) => {
+        const errorMessage = error.message;
+        console.log(errorMessage, "errorMessage");
+      });
+  };
   return (
     <Container>
-      <animated.div style={props}>I will fade in</animated.div>
+      <animated.div style={props}>
+        <button onClick={handleSignIn}>Register example</button>
+      </animated.div>
     </Container>
   );
 };
