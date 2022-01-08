@@ -10,7 +10,7 @@ import {
   SportCard,
 } from "./index.styles";
 
-export const Card: any = ({ item, cardStyle }: any) => {
+export const Card: any = ({ item }: any) => {
   return (
     <SportCard>
       <SportsButton>
@@ -18,12 +18,12 @@ export const Card: any = ({ item, cardStyle }: any) => {
           alt="strSportIconGreen"
           width="auto"
           height="30px"
-          src={item.strSportIconGreen}
+          src={item?.strSportIconGreen}
         />
       </SportsButton>
-      <CardImage src={item.strSportThumb} />
+      <CardImage src={item?.strSportThumb} />
       <CardTitleContainer />
-      <CardTitle>{item.strSport}</CardTitle>
+      <CardTitle>{item?.strSport}</CardTitle>
       <DisLikeButton>
         <img alt="like" src={Vector} />
       </DisLikeButton>

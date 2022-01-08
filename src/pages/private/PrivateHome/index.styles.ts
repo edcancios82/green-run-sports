@@ -108,4 +108,5 @@ export const DisLikeButton = styled.button`
 `;
 
 export const SportCard = styled.div`
+background-color: red;
 `;
