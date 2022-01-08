@@ -1,10 +1,10 @@
 import React, { FC, useReducer } from "react";
 
 interface UserContextProps {
-  uid?: string | null;
+  uid: string;
 }
 
-const initialState = { uid: null };
+const initialState = { uid: '' };
 
 export const UserContext = React.createContext<{
   state: UserContextProps;
@@ -19,7 +19,7 @@ const reducer = (state: UserContextProps, action: any) => {
     case "setUserData":
       return { ...state, uid: action.uid };
     case "clear":
-      return { uid: null };
+      return { uid: '' };
     default:
       throw new Error("Unexpected action");
   }

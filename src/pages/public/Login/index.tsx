@@ -1,21 +1,21 @@
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword
+} from "firebase/auth";
 import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { animated, useSpring } from "react-spring";
 import { auth } from "../../../constants/firebaseConfig";
-import { ThemeContext, UserContext } from "../../../contexts";
+import { UserContext } from "../../../contexts";
 import {
   Card,
   CardFooter,
   Container,
   InputEmailContainer,
-  InputPasswordContainer,
+  InputPasswordContainer
 } from "./index.styles";
 
 export const Login = () => {
-  const { state: themeState, dispatch: themeDispatch } =
-    useContext(ThemeContext);
-
   const { dispatch: userDispatch } = useContext(UserContext);
   const [userName, setUserName] = useState<string>("");
   const [password, setPassword] = useState<string>("");
@@ -39,21 +39,31 @@ export const Login = () => {
         })
         .catch((error) => {
           const errorMessage = error.message;
-          console.log(errorMessage, "errorMessage");
+          const errorCode = error.code;
+          if (errorCode === "auth/email-already-in-use") {
+            signInWithEmailAndPassword(auth, userName, password)
+              .then((userCredential) => {
+                const user = userCredential.user;
+                const { uid } = user;
+                userDispatch({
+                  type: "setUserData",
+                  uid,
+                });
+              })
+              .catch((error) => {
+                const errorMessage = error.message;
+                console.log(errorMessage, "errorMessage in Login");
+              });
+          } else {
+            console.log(errorMessage, "errorMessage in Register new user");
+          }
         });
     }
   };
 
-  const handleDarkMode = () =>
-    themeDispatch({
-      type: "toggleThemeMode",
-      mode: themeState.mode === "light" ? "dark" : "light",
-    });
-
   return (
     <Container>
       <animated.div style={cardProps}>
-        <button onClick={handleDarkMode}>tema</button>
         <Card>
           <h2>Welcome</h2>
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>

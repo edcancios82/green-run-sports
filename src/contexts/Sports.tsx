@@ -2,10 +2,9 @@ import React, { FC, useReducer } from "react";
 
 interface SportsContextProps {
   sportsList: any[];
-  sportsHistoryList: any[];
 }
 
-const initialState = { sportsList: [], sportsHistoryList: [] };
+const initialState = { sportsList: [] };
 
 export const SportsContext = React.createContext<{
   state: SportsContextProps;
@@ -15,34 +14,14 @@ export const SportsContext = React.createContext<{
   dispatch: () => null,
 });
 
-const handleOption = (
-  sportsHistoryList: any[],
-  sportsList: any[],
-  option: boolean
-) => {
-  const newHistory = [...sportsHistoryList];
-  newHistory.push({ ...sportsList?.[0], userLiked: option });
-
-  const newList = [...sportsList];
-  newList.shift();
-
-  return {
-    sportsList: newList,
-    sportsHistoryList: newHistory,
-  };
-};
-
 const reducer = (state: SportsContextProps, action: any) => {
   switch (action.type) {
     case "setSportsData":
       return { ...state, sportsList: action.sportsList };
-    case "setSportsOption":
-      const newData: SportsContextProps = handleOption(
-        state.sportsHistoryList,
-        state.sportsList,
-        action.option
-      );
-      return { ...state, ...newData };
+    case "removeFirstOption":
+      const newList = [...state.sportsList];
+      newList.shift();
+      return { ...state, sportsList: newList };
     default:
       throw new Error("Unexpected action");
   }
@@ -50,6 +29,7 @@ const reducer = (state: SportsContextProps, action: any) => {
 
 export const SportsProvider: FC = ({ children }: any) => {
   const [state, dispatch] = useReducer(reducer, initialState);
+
   return (
     <SportsContext.Provider value={{ state, dispatch }}>
       {children}

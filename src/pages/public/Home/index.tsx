@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { animated, useSpring } from "react-spring";
-import HomePic from "../../../assets/home.png";
+import HomePic from "../../../assets/banner.png";
 import { Card, Container } from "./index.styles";
 
 export const Home = () => {

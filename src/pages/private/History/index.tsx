@@ -1,10 +1,12 @@
-import { useContext } from "react";
+import { collection, getDocs } from "firebase/firestore";
+import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { animated, useSpring } from "react-spring";
 import Liked from "../../../assets/blue_heart.png";
 import LeftArrow from "../../../assets/left_arrow.png";
 import UnLiked from "../../../assets/red_close.png";
-import { SportsContext, ThemeContext } from "../../../contexts";
+import { db } from "../../../constants/firebaseConfig";
+import { ThemeContext, UserContext } from "../../../contexts";
 import {
   BackButton,
   DateTitle,
@@ -16,19 +18,21 @@ import {
 } from "./index.styles";
 
 export const History = () => {
+  const now = new Date();
+  
   const cardProps = useSpring({
     to: { opacity: 1, height: "100%" },
     from: { opacity: 0, height: "100%" },
     delay: 200,
   });
 
+  const [sportsHistoryList, setSportsHistoryList] = useState<any[]>([]);
+
   const { state: themeState } = useContext(ThemeContext);
 
-  const { state: sportsState } = useContext(SportsContext);
+  const { state: userState } = useContext(UserContext);
 
-  const { sportsHistoryList } = sportsState;
-
-  const now = new Date();
+  const { uid } = userState;
 
   const day = now.toLocaleString("en-US", {
     day: "numeric",
@@ -37,6 +41,22 @@ export const History = () => {
   const month = now.toLocaleString("en-US", {
     month: "long",
   });
+
+  const getSportsHistory = async () => {
+    let newHistory: any[] = [];
+    const querySnapshot = await getDocs(collection(db, uid));
+
+    querySnapshot.forEach((doc) => {
+      newHistory.push(doc.data());
+    });
+
+    setSportsHistoryList(newHistory);
+  };
+
+  useEffect(() => {
+    getSportsHistory();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <animated.div style={cardProps}>

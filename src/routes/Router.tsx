@@ -9,7 +9,7 @@ export const Router = () => {
   const { state: stateUser } = useContext(UserContext);
   return (
     <BrowserRouter>
-      {!stateUser.uid ? (
+      {stateUser.uid ? (
         <SportsProvider>
           <PrivateLayout>
             <Routes>
