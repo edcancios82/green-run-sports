@@ -80,11 +80,18 @@ export const CardTitle = styled.div`
   color: #fefefe;
 `;
 
-export const LikeButton = styled.button`
+export const ContainerButtons = styled.div`
   position: absolute;
-  left: 48.97%;
-  top: 72.39%;
-  bottom: 18.01%;
+  top: 73%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+`;
+
+export const LikeButton = styled.button`
+  position: relative;
   width: 81px;
   height: 81px;
   -moz-border-radius: 50px;
@@ -92,14 +99,13 @@ export const LikeButton = styled.button`
   border-radius: 50px;
   background: linear-gradient(125.02deg, #236bfe -17.11%, #063ba8 98.58%);
   box-shadow: 0px 10px 25px rgba(35, 107, 254, 0.2);
+  touch-action: none;
+  align-self: center;
+  margin: 0 20px;
 `;
 
 export const DisLikeButton = styled.button`
-  position: absolute;
-  left: 30.26%;
-
-  top: 74.17%;
-  bottom: 19.79%;
+  position: relative;
   width: 51px;
   height: 51px;
   -moz-border-radius: 50px;
@@ -107,6 +113,9 @@ export const DisLikeButton = styled.button`
   border-radius: 50px;
   background: #222243;
   box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.08);
+  touch-action: none;
+  align-self: center;
+  margin: 0 20px;
 `;
 
 export const SportCard = styled.div`
