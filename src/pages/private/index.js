@@ -1,1 +1,2 @@
-export * from './PrivateHome'
+export * from "./History";
+export * from "./PrivateHome";

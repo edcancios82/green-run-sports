@@ -9,26 +9,35 @@ import {
   HistoryButton,
   HomeButton,
   NotesButton,
-  ProfileButton
+  ProfileButton,
 } from "./index.styles";
+import { Link } from "react-router-dom";
 
 export const PrivateLayout: FC = ({ children }) => {
   return (
     <Container>
       <div>{children}</div>
       <Footer />
-      <HomeButton>
-        <img alt="home" src={Home} />
-      </HomeButton>
-      <HistoryButton>
-        <img alt="history" src={History} />
-      </HistoryButton>
-      <NotesButton>
-        <img alt="notes" src={Notes} />
-      </NotesButton>
-      <ProfileButton>
-        <img alt="profile" src={Profile} />
-      </ProfileButton>
+      <Link to="/">
+        <HomeButton>
+          <img alt="home" src={Home} />
+        </HomeButton>
+      </Link>
+      <Link to="/history">
+        <HistoryButton>
+          <img alt="history" src={History} />
+        </HistoryButton>
+      </Link>
+      <Link to="/notes">
+        <NotesButton>
+          <img alt="notes" src={Notes} />
+        </NotesButton>
+      </Link>
+      <Link to="/profile">
+        <ProfileButton>
+          <img alt="profile" src={Profile} />
+        </ProfileButton>
+      </Link>
     </Container>
   );
 };
