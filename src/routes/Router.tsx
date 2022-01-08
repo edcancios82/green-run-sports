@@ -1,14 +1,22 @@
-import React from "react";
+import { useContext } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { Home, Login } from "../pages";
+import { UserContext } from "../contexts";
+import { Home, Login, PrivateHome } from "../pages";
 
 export const Router = () => {
+  const { state: stateUser } = useContext(UserContext);
   return (
     <BrowserRouter>
-      <Routes>
-        <Route path="/login" element={<Login />} />
-        <Route path="/" element={<Home />} />
-      </Routes>
+      {!stateUser.uid ? (
+        <Routes>
+          <Route path="*" element={<PrivateHome />} />
+        </Routes>
+      ) : (
+        <Routes>
+          <Route path="/login" element={<Login />} />
+          <Route path="*" element={<Home />} />
+        </Routes>
+      )}
     </BrowserRouter>
   );
 };
