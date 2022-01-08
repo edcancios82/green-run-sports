@@ -39,6 +39,7 @@ export const CardImage = styled.img`
     left: 0px;
     top: 0px;
     background: url(${src});
+    margin: 0;
   `}
 `;
 
@@ -104,4 +105,7 @@ export const DisLikeButton = styled.button`
   border-radius: 50px;
   background: #222243;
   box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.08);
+`;
+
+export const SportCard = styled.div`
 `;
