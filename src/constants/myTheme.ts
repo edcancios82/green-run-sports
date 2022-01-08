@@ -3,7 +3,7 @@ import { DefaultTheme } from "styled-components";
 const myLightTheme: DefaultTheme = {
   borderRadius: "5px",
   colors: {
-    main: "#FBFBFB",
+    main: "#E5E5E5",
     primary: "#FFFFFF",
     secondary: "#161617",
     tertiary: "#FFFFFF",

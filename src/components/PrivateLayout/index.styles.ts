@@ -5,7 +5,7 @@ export const Container = styled.div`
     background-color: ${theme.colors.main};
     color: ${theme.colors.secondary};
     width: 100%;
-    min-height: 100%;
+    height: 100vh;
     padding: 0;
     position: absolute;
     display: flex;

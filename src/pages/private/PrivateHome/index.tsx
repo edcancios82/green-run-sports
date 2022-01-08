@@ -5,26 +5,15 @@ import Heart from "../../../assets/heart.png";
 import Moon from "../../../assets/moon.png";
 import Sun from "../../../assets/sun.png";
 import Vector from "../../../assets/vector.png";
-import Home from "../../../assets/home.png";
-import History from "../../../assets/history.png";
-import Notes from "../../../assets/notes.png";
-import Profile from "../../../assets/profile.png";
-
 import { ThemeContext } from "../../../contexts";
 import {
   CardImage,
   CardTitle,
   CardTitleContainer,
-  Container,
   DisLikeButton,
   LikeButton,
   SportsButton,
   ThemeButton,
-  Footer,
-  HomeButton,
-  HistoryButton,
-  ProfileButton,
-  NotesButton,
 } from "./index.styles";
 
 export const PrivateHome = () => {
@@ -34,8 +23,8 @@ export const PrivateHome = () => {
   const [sportsHistoryList, setSportsHistoryList] = useState<any[]>([]);
 
   const cardProps = useSpring({
-    to: { opacity: 1 },
-    from: { opacity: 0 },
+    to: { opacity: 1, height: "100%" },
+    from: { opacity: 0, height: "100%" },
     delay: 200,
   });
 
@@ -71,43 +60,28 @@ export const PrivateHome = () => {
   };
 
   return (
-    <Container>
-      <animated.div style={cardProps}>
-        <CardImage src={sportsList?.[0]?.strSportThumb} />
+    <animated.div style={cardProps}>
+      <CardImage src={sportsList?.[0]?.strSportThumb} />
 
-        <ThemeButton onClick={handleDarkMode}>
-          <img alt="theme" src={themeState.mode === "light" ? Moon : Sun} />
-        </ThemeButton>
-        <SportsButton>
-          <img
-            alt="strSportIconGreen"
-            width="auto"
-            height="30px"
-            src={sportsList?.[0]?.strSportIconGreen}
-          />
-        </SportsButton>
-        <CardTitleContainer />
-        <CardTitle>{sportsList?.[0]?.strSport}</CardTitle>
-      </animated.div>
+      <ThemeButton onClick={handleDarkMode}>
+        <img alt="theme" src={themeState.mode === "light" ? Moon : Sun} />
+      </ThemeButton>
+      <SportsButton>
+        <img
+          alt="strSportIconGreen"
+          width="auto"
+          height="30px"
+          src={sportsList?.[0]?.strSportIconGreen}
+        />
+      </SportsButton>
+      <CardTitleContainer />
+      <CardTitle>{sportsList?.[0]?.strSport}</CardTitle>
       <DisLikeButton onClick={handleDisLike}>
         <img alt="like" src={Vector} />
       </DisLikeButton>
       <LikeButton onClick={handleLike}>
         <img alt="like" src={Heart} />
       </LikeButton>
-      <Footer />
-      <HomeButton>
-        <img alt="home" src={Home} />
-      </HomeButton>
-      <HistoryButton>
-        <img alt="history" src={History} />
-      </HistoryButton>
-      <NotesButton>
-        <img alt="notes" src={Notes} />
-      </NotesButton>
-      <ProfileButton>
-        <img alt="profile" src={Profile} />
-      </ProfileButton>
-    </Container>
+    </animated.div>
   );
 };
