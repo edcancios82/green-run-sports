@@ -2,11 +2,13 @@ import { useDrag } from "@use-gesture/react";
 import { useContext, useEffect } from "react";
 import { animated } from "react-spring";
 import { axiosGetImages } from "../../../api/axiosRequest";
+import Heart from "../../../assets/heart.png";
 import Moon from "../../../assets/moon.png";
 import Sun from "../../../assets/sun.png";
+import Vector from "../../../assets/vector.png";
 import { SportsContext, ThemeContext } from "../../../contexts";
 import { Card } from "./Card";
-import { ThemeButton } from "./index.styles";
+import { DisLikeButton, LikeButton, ThemeButton } from "./index.styles";
 
 export const PrivateHome = () => {
   const { state: themeState, dispatch: themeDispatch } =
@@ -20,7 +22,7 @@ export const PrivateHome = () => {
   const handleOption = (option: boolean) =>
     sportsDispatch({ type: "setSportsOption", option });
 
-  const bind = useDrag(({ down, tap, movement: [x] }) => {
+  const bindLike = useDrag(({ down, tap, movement: [x] }) => {
     if (!down && tap) {
       return { x };
     }
@@ -28,7 +30,19 @@ export const PrivateHome = () => {
     if (down) {
       return { x };
     } else {
-      handleOption(x > 0);
+      x > 0 && handleOption(true);
+    }
+  });
+
+  const bindDisLike = useDrag(({ down, tap, movement: [x] }) => {
+    if (!down && tap) {
+      return { x };
+    }
+
+    if (down) {
+      return { x };
+    } else {
+      x < 0 && handleOption(false);
     }
   });
 
@@ -53,8 +67,16 @@ export const PrivateHome = () => {
       <ThemeButton onClick={handleDarkMode}>
         <img alt="theme" src={themeState.mode === "light" ? Moon : Sun} />
       </ThemeButton>
-      <animated.div {...bind()}>
-        <Card item={sportsList[0]} />
+      <Card item={sportsList[0]} />
+      <animated.div {...bindDisLike()}>
+        <DisLikeButton>
+          <img alt="like" src={Vector} />
+        </DisLikeButton>
+      </animated.div>
+      <animated.div {...bindLike()}>
+        <LikeButton>
+          <img alt="like" src={Heart} />
+        </LikeButton>
       </animated.div>
     </>
   );

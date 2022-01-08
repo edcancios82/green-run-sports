@@ -27,7 +27,7 @@ export const History = () => {
   const { state: sportsState } = useContext(SportsContext);
 
   const { sportsHistoryList } = sportsState;
-  
+
   const now = new Date();
 
   const day = now.toLocaleString("en-US", {
@@ -51,8 +51,9 @@ export const History = () => {
       </ScreenDescription>
       <DateTitle>{`${day} ${month}`}</DateTitle>
       <SportList>
-        {sportsHistoryList?.map((item) => (
+        {sportsHistoryList?.map((item, i) => (
           <SportItemList
+            key={`sport-item-${i}`}
             liked={item.userLiked}
             isDark={themeState.mode === "dark"}
           >

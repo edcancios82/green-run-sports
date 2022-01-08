@@ -7,6 +7,7 @@ export const ThemeButton = styled.button`
     height: 63px;
     left: 21px;
     top: 22px;
+    z-index: 2;
 
     background-color: ${theme.colors.tertiary};
     backdrop-filter: blur(20px);
@@ -25,6 +26,7 @@ export const SportsButton = styled.button`
   backdrop-filter: blur(20px);
   border-radius: 18px;
   border: none;
+  z-index: 2;
 
   > img {
     filter: brightness(0) invert(1);
@@ -108,5 +110,8 @@ export const DisLikeButton = styled.button`
 `;
 
 export const SportCard = styled.div`
-background-color: red;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
 `;
