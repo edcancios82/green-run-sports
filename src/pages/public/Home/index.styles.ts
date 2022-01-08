@@ -23,7 +23,7 @@ export const Card = styled.div`
 
     h2 {
       margin: 0;
-      width: 75%;
+      width: 80%;
       font-family: DM Sans;
       font-style: normal;
       font-weight: bold;
@@ -32,7 +32,7 @@ export const Card = styled.div`
     }
 
     p {
-      width: 75%;
+      width: 80%;
       font-family: Epilogue;
       font-style: normal;
       font-weight: normal;

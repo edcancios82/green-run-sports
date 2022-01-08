@@ -6,6 +6,7 @@ const myLightTheme: DefaultTheme = {
     main: "#F3F3F3",
     primary: "#FFFFFF",
     secondary: "#161617",
+    tertiary: "#FFFFFF",
   },
 };
 
@@ -15,6 +16,7 @@ const myDarkTheme: DefaultTheme = {
     main: "#2C2B3E",
     primary: "#2C2B3E",
     secondary: "white",
+    tertiary: "#2F2F43",
   },
 };
 
