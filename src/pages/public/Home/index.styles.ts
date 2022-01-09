@@ -30,9 +30,11 @@ export const Card = styled.div`
   ${({ theme }) => css`
     background-color: ${theme.colors.primary};
     color: ${theme.colors.secondary};
-    height: 300px;
+    height: 400px;
+    width: 100%;
+    max-width: 500px;
     position: absolute;
-    top: calc(100% - 300px);
+    top: calc(100% - 400px);
     padding: 30px 20px;
     text-align: left;
     border-radius: 30px;
@@ -65,6 +67,10 @@ export const Card = styled.div`
       box-shadow: 0px 4px 30px rgba(34, 105, 251, 0.8);
       border-radius: 25px;
       border: none;
+    }
+
+    @media only screen and (max-height: 1000px) {
+      top: calc(100% - 300px);
     }
   `}
 `;

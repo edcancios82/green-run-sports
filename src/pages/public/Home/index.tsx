@@ -13,13 +13,13 @@ export const Home = () => {
   const imgProps = useSpring({
     to: { opacity: 1 },
     from: { opacity: 0 },
-    delay: 400,
+    delay: 100,
   });
 
   const cardProps = useSpring({
     to: { opacity: 1 },
     from: { opacity: 0 },
-    delay: 1000,
+    delay: 50,
   });
 
   return (
