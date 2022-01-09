@@ -8,7 +8,7 @@ import Moon from "../../../assets/moon.png";
 import Sun from "../../../assets/sun.png";
 import Vector from "../../../assets/vector.png";
 import { db } from "../../../constants/firebaseConfig";
-import { SportsContext, ThemeContext, UserContext } from "../../../contexts";
+import { SportsContext, ThemeContext, UserContext, SportProps } from "../../../contexts";
 import { Card } from "./Card";
 import {
   ContainerButtons,
@@ -18,7 +18,7 @@ import {
 } from "./index.styles";
 
 export const PrivateHome = () => {
-  const [sportsHistoryList, setSportsHistoryList] = useState<any[] | null>(
+  const [sportsHistoryList, setSportsHistoryList] = useState<SportProps[] | null>(
     null
   );
   const [{ x: rx, y: ry }, rApi] = useSpring(() => ({ x: 0, y: 0 }));
@@ -35,7 +35,7 @@ export const PrivateHome = () => {
   const { uid } = stateUser;
   const { sportsList } = sportsState;
 
-  const sendToFirebase = (item: any) => {
+  const sendToFirebase = (item: SportProps) => {
     addDoc(collection(db, uid), {
       ...item,
     });
@@ -82,7 +82,7 @@ export const PrivateHome = () => {
   };
 
   const getSportsHistory = async () => {
-    let newHistory: any[] = [];
+    let newHistory: SportProps[] = [];
     const querySnapshot = await getDocs(collection(db, uid));
 
     querySnapshot.forEach((doc) => {
@@ -103,7 +103,7 @@ export const PrivateHome = () => {
         const { data } = response;
         const { sports } = data;
 
-        const filteredData = sports.filter((item: any) => {
+        const filteredData = sports.filter((item: SportProps) => {
           const found = sportsHistoryList.find(
             (stored) => stored.idSport === item.idSport
           );

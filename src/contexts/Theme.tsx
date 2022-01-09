@@ -23,7 +23,7 @@ const reducer = (state: ThemeContextProps, action: any) => {
   }
 };
 
-export const ThemeProvider: FC = ({ children }: any) => {
+export const ThemeProvider: FC = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
   return (
     <ThemeContext.Provider value={{ state, dispatch }}>

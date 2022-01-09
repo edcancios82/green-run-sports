@@ -6,7 +6,7 @@ import Liked from "../../../assets/blue_heart.png";
 import LeftArrow from "../../../assets/left_arrow.png";
 import UnLiked from "../../../assets/red_close.png";
 import { db } from "../../../constants/firebaseConfig";
-import { ThemeContext, UserContext } from "../../../contexts";
+import { ThemeContext, UserContext, SportProps } from "../../../contexts";
 import {
   BackButton,
   DateTitle,
@@ -19,14 +19,14 @@ import {
 
 export const History = () => {
   const now = new Date();
-  
+
   const cardProps = useSpring({
     to: { opacity: 1, height: "100%" },
     from: { opacity: 0, height: "100%" },
     delay: 200,
   });
 
-  const [sportsHistoryList, setSportsHistoryList] = useState<any[]>([]);
+  const [sportsHistoryList, setSportsHistoryList] = useState<SportProps[]>([]);
 
   const { state: themeState } = useContext(ThemeContext);
 
@@ -43,7 +43,7 @@ export const History = () => {
   });
 
   const getSportsHistory = async () => {
-    let newHistory: any[] = [];
+    let newHistory: SportProps[] = [];
     const querySnapshot = await getDocs(collection(db, uid));
 
     querySnapshot.forEach((doc) => {
@@ -55,7 +55,7 @@ export const History = () => {
 
   useEffect(() => {
     getSportsHistory();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -71,10 +71,10 @@ export const History = () => {
       </ScreenDescription>
       <DateTitle>{`${day} ${month}`}</DateTitle>
       <SportList>
-        {sportsHistoryList?.map((item, i) => (
+        {sportsHistoryList?.map((item: SportProps, i) => (
           <SportItemList
             key={`sport-item-${i}`}
-            liked={item.userLiked}
+            liked={item.userLiked || false}
             isDark={themeState.mode === "dark"}
           >
             <img

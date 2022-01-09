@@ -1,7 +1,4 @@
-import {
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword
-} from "firebase/auth";
+import { signInWithEmailAndPassword } from "firebase/auth";
 import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { animated, useSpring } from "react-spring";
@@ -12,7 +9,7 @@ import {
   CardFooter,
   Container,
   InputEmailContainer,
-  InputPasswordContainer
+  InputPasswordContainer,
 } from "./index.styles";
 
 export const Login = () => {
@@ -28,7 +25,7 @@ export const Login = () => {
 
   const handleSignIn = () => {
     if (userName.length && password.length) {
-      createUserWithEmailAndPassword(auth, userName, password)
+      signInWithEmailAndPassword(auth, userName, password)
         .then((userCredential) => {
           const user = userCredential.user;
           const { uid } = user;
@@ -39,24 +36,7 @@ export const Login = () => {
         })
         .catch((error) => {
           const errorMessage = error.message;
-          const errorCode = error.code;
-          if (errorCode === "auth/email-already-in-use") {
-            signInWithEmailAndPassword(auth, userName, password)
-              .then((userCredential) => {
-                const user = userCredential.user;
-                const { uid } = user;
-                userDispatch({
-                  type: "setUserData",
-                  uid,
-                });
-              })
-              .catch((error) => {
-                const errorMessage = error.message;
-                console.log(errorMessage, "errorMessage in Login");
-              });
-          } else {
-            console.log(errorMessage, "errorMessage in Register new user");
-          }
+          console.log(errorMessage, "errorMessage in Login");
         });
     }
   };

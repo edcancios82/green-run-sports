@@ -1,7 +1,16 @@
 import React, { FC, useReducer } from "react";
 
-interface SportsContextProps {
-  sportsList: any[];
+export interface SportProps {
+  idSport?: string;
+  strFormat?: string;
+  strSport?: string;
+  strSportDescription?: string;
+  strSportIconGreen?: string;
+  strSportThumb?: string;
+  userLiked?: boolean;
+}
+export interface SportsContextProps {
+  sportsList: SportProps[];
 }
 
 const initialState = { sportsList: [] };
@@ -27,7 +36,7 @@ const reducer = (state: SportsContextProps, action: any) => {
   }
 };
 
-export const SportsProvider: FC = ({ children }: any) => {
+export const SportsProvider: FC = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   return (

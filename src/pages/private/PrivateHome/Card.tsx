@@ -1,12 +1,18 @@
+import { FC } from "react";
 import {
   CardImage,
   CardTitle,
   CardTitleContainer,
-  SportsButton,
   SportCard,
+  SportsButton,
 } from "./index.styles";
+import { SportProps } from "../../../contexts";
 
-export const Card: any = ({ item }: any) => {
+interface CardProps {
+  item: SportProps;
+}
+
+export const Card: FC<CardProps> = ({ item }) => {
   return (
     <SportCard>
       <SportsButton>

@@ -4,7 +4,7 @@ interface UserContextProps {
   uid: string;
 }
 
-const initialState = { uid: '' };
+const initialState = { uid: "" };
 
 export const UserContext = React.createContext<{
   state: UserContextProps;
@@ -19,13 +19,13 @@ const reducer = (state: UserContextProps, action: any) => {
     case "setUserData":
       return { ...state, uid: action.uid };
     case "clear":
-      return { uid: '' };
+      return { uid: "" };
     default:
       throw new Error("Unexpected action");
   }
 };
 
-export const UserProvider: FC = ({ children }: any) => {
+export const UserProvider: FC = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
   return (
     <UserContext.Provider value={{ state, dispatch }}>
