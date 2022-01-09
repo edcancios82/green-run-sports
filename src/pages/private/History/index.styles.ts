@@ -99,14 +99,14 @@ export const SportList = styled.ul`
   height: calc(100% - 270px);
   left: 0;
   width: 100%;
-  overflow-x: none;
+  overflow-x: hidden;
 `;
 
 export const SportItemList = styled.li<LiProps>`
   ${({ theme, liked, isDark }) => css`
     position: relative;
     display: flex;
-    width: 100%;
+    width: 98%;
     height: 77px;
     margin: 14px 0;
     background-color: ${theme.colors.primary};

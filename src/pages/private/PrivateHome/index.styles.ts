@@ -29,28 +29,26 @@ export const ThemeButton = styled.button`
 `;
 
 export const SportsButton = styled.button`
-  position: fixed;
-  width: 62px;
-  height: 63px;
-  left: 410px;
-  top: 22px;
-  background: rgba(34, 34, 67, 0.2);
-  backdrop-filter: blur(20px);
-  border-radius: 18px;
-  border: none;
-  z-index: 2;
+  ${({ theme }) => css`
+    background-color: ${theme.colors.tertiary};
+    position: fixed;
+    width: 62px;
+    height: 63px;
+    left: 410px;
+    top: 22px;
+    backdrop-filter: blur(20px);
+    border-radius: 18px;
+    border: none;
+    z-index: 2;
 
-  @media only screen and (max-width: 1000px) {
-    left: 305px;
-  }
+    @media only screen and (max-width: 1000px) {
+      left: 305px;
+    }
 
-  &:focus {
-    outline: none;
-  }
-
-  > img {
-    filter: brightness(0) invert(1);
-  }
+    &:focus {
+      outline: none;
+    }
+  `}
 `;
 
 export const CardImage = styled.img`
@@ -93,7 +91,7 @@ export const CardTitle = styled.div`
 
 export const ContainerButtons = styled.div`
   position: absolute;
-  top: 73%;
+  top: 68%;
   display: flex;
   flex-direction: row;
   justify-content: center;
