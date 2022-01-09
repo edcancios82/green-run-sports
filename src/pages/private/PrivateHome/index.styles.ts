@@ -1,5 +1,13 @@
 import styled, { css } from "styled-components";
 
+export const SportCard = styled.div`
+  width: 100%;
+  display: flex:
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+`;
+
 export const ThemeButton = styled.button`
   ${({ theme }) => css`
     position: absolute;
@@ -13,20 +21,32 @@ export const ThemeButton = styled.button`
     backdrop-filter: blur(20px);
     border-radius: 18px;
     border: none;
+
+    &:focus {
+      outline: none;
+    }
   `}
 `;
 
 export const SportsButton = styled.button`
-  position: absolute;
+  position: fixed;
   width: 62px;
   height: 63px;
-  left: 305px;
+  left: 410px;
   top: 22px;
   background: rgba(34, 34, 67, 0.2);
   backdrop-filter: blur(20px);
   border-radius: 18px;
   border: none;
   z-index: 2;
+
+  @media only screen and (max-width: 1000px) {
+    left: 305px;
+  }
+
+  &:focus {
+    outline: none;
+  }
 
   > img {
     filter: brightness(0) invert(1);
@@ -35,22 +55,16 @@ export const SportsButton = styled.button`
 
 export const CardImage = styled.img`
   ${({ src }) => css`
-    position: absolute;
     width: 100%;
     height: auto;
-    left: 0px;
-    top: 0px;
     background: url(${src});
     margin: 0;
   `}
 `;
 
 export const CardTitleContainer = styled.div`
-  position: absolute;
   width: 100%;
   height: 100px;
-  left: 0px;
-  top: 464px;
 
   background: linear-gradient(
     360deg,
@@ -66,17 +80,14 @@ export const CardTitle = styled.div`
   width: 100%;
   height: 48px;
   left: 21px;
-  top: 490px;
-
+  top: 53%;
   font-family: DM Sans;
   font-style: normal;
   font-weight: bold;
   font-size: 34px;
   line-height: 41px;
-
   display: flex;
   align-items: center;
-
   color: #fefefe;
 `;
 
@@ -102,6 +113,14 @@ export const LikeButton = styled.button`
   touch-action: none;
   align-self: center;
   margin: 0 20px;
+
+  &:focus {
+    outline: none;
+  }
+
+  > img {
+    touch-action: none;
+  }
 `;
 
 export const DisLikeButton = styled.button`
@@ -116,11 +135,12 @@ export const DisLikeButton = styled.button`
   touch-action: none;
   align-self: center;
   margin: 0 20px;
-`;
 
-export const SportCard = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
+  &:focus {
+    outline: none;
+  }
+
+  > img {
+    touch-action: none;
+  }
 `;

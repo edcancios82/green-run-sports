@@ -14,7 +14,7 @@ import {
   ContainerButtons,
   DisLikeButton,
   LikeButton,
-  ThemeButton,
+  ThemeButton
 } from "./index.styles";
 
 export const PrivateHome = () => {
@@ -127,12 +127,12 @@ export const PrivateHome = () => {
       <ContainerButtons>
         <animated.div {...bindDisLike()} style={{ x: lx, y: ly }}>
           <DisLikeButton>
-            <img alt="like" src={Vector} />
+            <img alt="like" src={Vector} draggable={false} />
           </DisLikeButton>
         </animated.div>
         <animated.div {...bindLike()} style={{ x: rx, y: ry }}>
           <LikeButton>
-            <img alt="like" src={Heart} />
+            <img alt="like" src={Heart}  draggable={false}/>
           </LikeButton>
         </animated.div>
       </ContainerButtons>

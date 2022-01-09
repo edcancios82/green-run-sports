@@ -93,25 +93,24 @@ export const DateTitle = styled.p`
 
 export const SportList = styled.ul`
   margin: 0;
-  padding: 0 32px;
+  margin-top: 75%;
+  padding: 0;
   overflow: auto;
-  position: absolute;
-  height: 465px;
+  height: calc(100% - 270px);
+  left: 0;
   width: 100%;
-  top: 258px;
+  overflow-x: none;
 `;
 
 export const SportItemList = styled.li<LiProps>`
   ${({ theme, liked, isDark }) => css`
     position: relative;
     display: flex;
-    width: 325px;
+    width: 100%;
     height: 77px;
     margin: 14px 0;
-
     background-color: ${theme.colors.primary};
     border-radius: 12px;
-
     list-style-type: none;
 
     > img {
@@ -151,8 +150,7 @@ export const SportTitle = styled.h4`
   font-weight: bold;
   font-size: 24px;
   line-height: 122.02%;
-  /* or 29px */
-
+  
   display: flex;
   align-items: center;
   letter-spacing: -0.045em;

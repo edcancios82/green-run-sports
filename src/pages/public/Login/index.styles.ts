@@ -5,12 +5,9 @@ export const Container = styled.div`
     background-color: ${theme.colors.main};
     color: ${theme.colors.secondary};
     width: 100%;
-    min-height: 100vh;
+    max-width: 500px;
+    height: 100%;
     padding: 0;
-    position: absolute;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
   `}
 `;
 
@@ -67,11 +64,9 @@ export const Card = styled.div`
 export const InputEmailContainer = styled.div`
   ${({ theme }) => css`
     position: absolute;
-    width: 329px;
+    width: 330px;
     height: 67px;
-    left: 30px;
     top: 337px;
-
     background-color: ${theme.colors.tertiary};
     border: 1px solid rgba(0, 0, 0, 0.06);
     box-sizing: border-box;
@@ -103,9 +98,9 @@ export const InputEmailContainer = styled.div`
 export const InputPasswordContainer = styled.div`
   ${({ theme }) => css`
     position: absolute;
-    width: 329px;
+    width: 330px;
     height: 67px;
-    left: 30px;
+    height: 67px;
     top: 414px;
 
     background-color: ${theme.colors.tertiary};
@@ -137,15 +132,17 @@ export const InputPasswordContainer = styled.div`
 `;
 
 export const CardFooter = styled.div`
+  position: absolute;
+  top: 510px;
   width: 100%;
+  max-width: 320px;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
 
   > p {
-    position: absolute;
     width: 168px;
     height: 20px;
-    left: 30px;
-    top: 503px;
-
     font-family: DM Sans;
     font-style: normal;
     font-weight: normal;
@@ -162,13 +159,8 @@ export const CardFooter = styled.div`
     justify-content: center;
     align-items: center;
     padding: 22px 38px;
-
-    position: absolute;
     width: 122px;
     height: 66px;
-    left: 30px;
-    top: 555px;
-
     background: linear-gradient(99deg, #236bfe 6.69%, #0d4ed3 80.95%);
     box-shadow: 0px 4px 30px rgba(34, 105, 251, 0.8);
     border-radius: 25px;

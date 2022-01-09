@@ -1,13 +1,29 @@
 import styled, { css } from "styled-components";
 
+export const ResponsiveContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
+
 export const Container = styled.div`
   ${({ theme }) => css`
     background-color: ${theme.colors.main};
     color: ${theme.colors.secondary};
     width: 100%;
+    max-width: 500px;
     height: 100%;
     padding: 0;
   `}
+`;
+
+export const SideContainer = styled.div`
+  display: none;
+  @media only screen and (min-width: 600px) {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+  }
 `;
 
 export const Card = styled.div`

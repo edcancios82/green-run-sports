@@ -2,14 +2,16 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { animated, useSpring } from "react-spring";
+import GreenRunLogo from "../../../assets/GreenRun_logo.png";
 import { auth } from "../../../constants/firebaseConfig";
 import { UserContext } from "../../../contexts";
+import { ResponsiveContainer, SideContainer } from "../Home/index.styles";
 import {
   Card,
   CardFooter,
-  Container,
   InputEmailContainer,
   InputPasswordContainer,
+  Container,
 } from "./index.styles";
 
 export const Login = () => {
@@ -42,30 +44,38 @@ export const Login = () => {
   };
 
   return (
-    <Container>
-      <animated.div style={cardProps}>
-        <Card>
-          <h2>Welcome</h2>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-          <InputEmailContainer>
-            <p>User</p>
-            <input type="email" onChange={(e) => setUserName(e.target.value)} />
-          </InputEmailContainer>
-          <InputPasswordContainer>
-            <p>Password</p>
-            <input
-              type="password"
-              onChange={(e) => setPassword(e.target.value)}
-            />
-          </InputPasswordContainer>
-          <CardFooter>
-            <p>Forgot your password?</p>
-            <Link to="/login">
-              <button onClick={handleSignIn}>Login</button>
-            </Link>
-          </CardFooter>
-        </Card>
-      </animated.div>
-    </Container>
+    <ResponsiveContainer>
+      <Container>
+        <animated.div style={cardProps}>
+          <Card>
+            <h2>Welcome</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            <InputEmailContainer>
+              <p>User</p>
+              <input
+                type="email"
+                onChange={(e) => setUserName(e.target.value)}
+              />
+            </InputEmailContainer>
+            <InputPasswordContainer>
+              <p>Password</p>
+              <input
+                type="password"
+                onChange={(e) => setPassword(e.target.value)}
+              />
+            </InputPasswordContainer>
+            <CardFooter>
+              <p>Forgot your password?</p>
+              <Link to="/login">
+                <button onClick={handleSignIn}>Login</button>
+              </Link>
+            </CardFooter>
+          </Card>
+        </animated.div>
+      </Container>
+      <SideContainer>
+        <img alt="logo" src={GreenRunLogo} />
+      </SideContainer>
+    </ResponsiveContainer>
   );
 };
